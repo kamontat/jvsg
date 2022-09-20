@@ -7,10 +7,9 @@ services:
     image: prom/prometheus:v2.37.1
     container_name: prometheus
     restart: unless-stopped
-    user: "1000"
     volumes:
       - ./prom/prometheus.yml:/etc/prometheus/prometheus.yml
-      - ./prom/data:/prometheus
+      - ./prom/data:/prometheus:rw
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
@@ -39,10 +38,9 @@ services:
     image: grafana/grafana-oss:9.1.5
     container_name: grafana
     restart: unless-stopped
-    user: "1000"
     volumes:
       - ./grafana/grafana.ini:/etc/grafana/grafana.ini
-      - ./grafana/data:/var/lib/grafana
+      - ./grafana/data:/var/lib/grafana:rw
     expose:
       - 3000
     ports:
@@ -51,9 +49,7 @@ services:
       - monitoring
 
   server:
-    build:
-      context: ../server
-      dockerfile: Dockerfile
+    image: ghcr.io/kamontat/jvsg-server:sha-00fbfe7
     container_name: server
     restart: unless-stopped
     expose:
