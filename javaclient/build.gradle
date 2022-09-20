@@ -29,6 +29,14 @@ application {
     mainClass = 'client.App'
 }
 
+jar {
+  manifest {
+    attributes(
+      'Main-Class': 'client.App'
+    )
+  }
+}
+
 tasks.named('test') {
     useJUnitPlatform() 
 }
