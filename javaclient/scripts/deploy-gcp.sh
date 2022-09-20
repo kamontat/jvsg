@@ -20,7 +20,7 @@ create_instance() {
     "--container-image=$image" \
     --container-restart-policy=on-failure \
     --container-privileged \
-    "--container-env=SERVER_HOST=$server,PUSH_GATEWAY_URL=http://$server:9091" \
+    "--container-env=SERVER_HOST=$server,PUSH_GATEWAY_URL=$server:9091" \
     --no-shielded-secure-boot \
     --shielded-vtpm \
     --shielded-integrity-monitoring \
@@ -29,5 +29,5 @@ create_instance() {
 
 create_instance \
   "javaclient" \
-  "ghcr.io/kamontat/jvsg-javaclient:sha-2f71717" \
+  "ghcr.io/kamontat/jvsg-javaclient:sha-b9f6d08" \
   "10.148.0.8"
