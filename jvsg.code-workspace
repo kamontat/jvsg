@@ -21,6 +21,10 @@
       "path": "./docker"
     },
     {
+      "name": "scripts",
+      "path": "./scripts"
+    },
+    {
       "name": "root",
       "path": "."
     }
