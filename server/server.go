@@ -33,16 +33,16 @@ func AddPath(pattern string, handler func(http.ResponseWriter, *http.Request) (s
 			w.Header().Set("X-Error", err.Error())
 			w.WriteHeader(http.StatusBadRequest)
 
-			RequestCounterMetrics.WithLabelValues(r.URL.Path, "400", isDebugStr).Inc()
-			RequestDurationMetrics.WithLabelValues(r.URL.Path, "400", isDebugStr).Observe(float64(time.Since(start).Milliseconds()))
+			NewRequestMetric(r.URL.Path, "400", isDebugStr)
+			RequestDurationMetric(r.URL.Path, "400", isDebugStr, start)
 			return
 		}
 		if response != "" && isDebug {
 			fmt.Printf("server: %s\n", response)
 		}
 
-		RequestCounterMetrics.WithLabelValues(r.URL.Path, "200", isDebugStr).Inc()
-		RequestDurationMetrics.WithLabelValues(r.URL.Path, "200", isDebugStr).Observe(float64(time.Since(start).Milliseconds()))
+		NewRequestMetric(r.URL.Path, "200", isDebugStr)
+		RequestDurationMetric(r.URL.Path, "200", isDebugStr, start)
 	})
 }
 

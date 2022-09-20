@@ -1,19 +1,30 @@
 package main
 
 import (
+	"time"
+
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promauto"
 )
 
 var (
-	RequestCounterMetrics = promauto.NewCounterVec(prometheus.CounterOpts{
+	requestCount = promauto.NewCounterVec(prometheus.CounterOpts{
 		Name: "server_request_count",
 		Help: "How many request hit server",
 	}, []string{"path", "status", "debug"})
 
-	RequestDurationMetrics = promauto.NewHistogramVec(prometheus.HistogramOpts{
-		Name:    "server_request_duration_ms",
+	requestDuration = promauto.NewHistogramVec(prometheus.HistogramOpts{
+		Name:    "server_request_ms",
 		Help:    "How long it takes to process request",
 		Buckets: []float64{1, 3, 5, 10, 20, 50, 100, 200, 500, 1000},
 	}, []string{"path", "status", "debug"})
 )
+
+func NewRequestMetric(path, status, debug string) {
+	requestCount.WithLabelValues(path, status, debug).Inc()
+}
+
+func RequestDurationMetric(path, status, debug string, start time.Time) {
+	var duration = float64(time.Since(start).Milliseconds())
+	requestDuration.WithLabelValues(path, status, debug).Observe(duration)
+}
