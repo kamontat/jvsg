@@ -6,7 +6,7 @@ const defaultHost = "0.0.0.0"
 const defaultPort = "3333"
 
 func main() {
-	var host = GetEnv("HOSTNAME", defaultHost)
+	var host = GetEnv("HOST", defaultHost)
 	var port = GetEnv("PORT", defaultPort)
 
 	AddPath("/mirror", MirrorBody)
