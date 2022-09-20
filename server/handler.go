@@ -7,6 +7,11 @@ import (
 	"os"
 )
 
+func PingBody(w http.ResponseWriter, r *http.Request) (string, error) {
+	_, err := w.Write([]byte("pong"))
+	return "", err
+}
+
 // MirrorBody will return the request as a response
 func MirrorBody(w http.ResponseWriter, r *http.Request) (string, error) {
 	// Throw if http method is not POST

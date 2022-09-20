@@ -9,6 +9,7 @@ func main() {
 	var host = GetEnv("HOST", defaultHost)
 	var port = GetEnv("PORT", defaultPort)
 
+	AddPath("/ping", PingBody)
 	AddPath("/mirror", MirrorBody)
 	AddPath("/json", GetJsonBody)
 	AddPath("/json/cached", GetCacheJsonBody)
