@@ -23,3 +23,5 @@ while true; do
   ((i++))
   sleep "${EXECUTION_INTERVAL:-1}"
 done
+
+echo "End send request"
