@@ -1,0 +1,31 @@
+{
+  "folders": [
+    {
+      "name": "bashclient",
+      "path": "./bashclient"
+    },
+    {
+      "name": "goclient",
+      "path": "./goclient"
+    },
+    {
+      "name": "javaclient",
+      "path": "./javaclient"
+    },
+    {
+      "name": "server",
+      "path": "./server"
+    },
+    {
+      "name": "docker",
+      "path": "./docker"
+    },
+    {
+      "name": "root",
+      "path": "."
+    }
+  ],
+  "settings": {
+    "java.configuration.updateBuildConfiguration": "automatic"
+  }
+}

@@ -1,0 +1,7 @@
+bashclient_time_namelookup %{time_namelookup}\n
+bashclient_time_connect %{time_connect}\n
+bashclient_time_appconnect %{time_appconnect}\n
+bashclient_time_pretransfer %{time_pretransfer}\n
+bashclient_time_redirect %{time_redirect}\n
+bashclient_time_starttransfer %{time_starttransfer}\n
+bashclient_time_total %{time_total}\n
