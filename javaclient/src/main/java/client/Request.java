@@ -32,6 +32,10 @@ public class Request {
     this.metrics = new Metric(pushGatewayUrl);
   }
 
+  public String getServer() {
+    return String.format("%s:%s", this.host, this.port);
+  }
+
   public void start() throws Exception {
     this.metrics.newRequest();
 

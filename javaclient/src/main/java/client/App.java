@@ -8,13 +8,14 @@ import java.util.concurrent.TimeUnit;
 public class App {
     private static final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
-    private static final Executor executor = new Executor();
-
     public static void main(String[] args) throws Exception {
         String value = Environment.get("EXECUTION_INTERVAL_VALUE", "1");
         String unit = Environment.get("EXECUTION_INTERVAL_UNIT", "SECONDS");
 
-        System.out.println("Start send request");
+        Request requester = new Request();
+        Executor executor = new Executor(requester);
+
+        System.out.println("Start send request " + requester.getServer());
         ScheduledFuture<?> handle = App.scheduler.scheduleAtFixedRate(executor, 0, Integer.parseInt(value),
                 TimeUnit.valueOf(unit));
 

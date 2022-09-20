@@ -3,8 +3,8 @@ package client;
 public class Executor implements Runnable {
   private Request requester;
 
-  public Executor() {
-    this.requester = new Request();
+  public Executor(Request requester) {
+    this.requester = requester;
   }
 
   @Override
