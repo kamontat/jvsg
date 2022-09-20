@@ -52,7 +52,7 @@ jobs:
           flavor: |
             latest=true
 
-      - name: Build Docker image with Postgres
+      - name: Build Docker image
         uses: docker/build-push-action@v3
         with:
           context: ${{ env.APP_NAME }}
