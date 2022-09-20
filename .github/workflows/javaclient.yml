@@ -50,7 +50,7 @@ jobs:
             type=ref,event=pr
             type=sha
           flavor: |
-            latest: true
+            latest=true
 
       - name: Build Docker image with Postgres
         uses: docker/build-push-action@v3
