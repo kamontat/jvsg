@@ -13,7 +13,7 @@ public class Metric {
   private CollectorRegistry registry;
   private PushGateway pushGateway;
 
-  private Counter requestTotal;
+  private Counter requestCount;
   private Histogram requestDuration;
   private Histogram requestWithJsonDuration;
 
@@ -21,8 +21,8 @@ public class Metric {
     this.registry = new CollectorRegistry();
     this.pushGateway = new PushGateway(url);
 
-    this.requestTotal = Counter.build()
-        .name("request_total")
+    this.requestCount = Counter.build()
+        .name("request_count")
         .help("How many job execute")
         .register(registry);
     this.requestDuration = Histogram.build()
@@ -38,7 +38,7 @@ public class Metric {
   }
 
   public void newRequest() {
-    this.requestTotal.inc();
+    this.requestCount.inc();
   }
 
   public void requestDuration(Instant start) {

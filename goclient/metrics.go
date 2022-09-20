@@ -7,8 +7,8 @@ import (
 )
 
 var (
-	requestTotal = prometheus.NewCounter(prometheus.CounterOpts{
-		Name: "request_total",
+	requestCount = prometheus.NewCounter(prometheus.CounterOpts{
+		Name: "request_count",
 		Help: "How many job execute",
 	})
 	requestDuration = prometheus.NewHistogram(prometheus.HistogramOpts{
@@ -24,7 +24,7 @@ var (
 )
 
 func NewRequestMetric() {
-	requestTotal.Inc()
+	requestCount.Inc()
 }
 
 func RequestDurationMetric(start time.Time) {

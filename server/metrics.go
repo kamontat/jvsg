@@ -7,7 +7,7 @@ import (
 
 var (
 	RequestCounterMetrics = promauto.NewCounterVec(prometheus.CounterOpts{
-		Name: "server_request_total",
+		Name: "server_request_count",
 		Help: "How many request hit server",
 	}, []string{"path", "status", "debug"})
 

@@ -22,7 +22,7 @@ func main() {
 
 	pusher := push.New(pushGatewayUrl, jobName)
 	pusher.
-		Collector(requestTotal).
+		Collector(requestCount).
 		Collector(requestDuration).
 		Collector(requestWithJsonDuration)
 
