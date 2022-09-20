@@ -26,6 +26,7 @@ func main() {
 		Collector(requestDuration).
 		Collector(requestWithJsonDuration)
 
+	fmt.Println("Start send request")
 	s := gocron.NewScheduler(time.UTC)
 	s.Every(executionInterval).Do(func() {
 		NewRequestMetric()

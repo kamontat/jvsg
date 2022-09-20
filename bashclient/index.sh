@@ -8,6 +8,8 @@ SERVER_DEBUG="${SERVER_DEBUG:-false}"
 PUSH_GATEWAY_URL="${PUSH_GATEWAY_URL:-http://localhost:9091}"
 JOB_NAME="${JOB_NAME:-bashclient}"
 
+echo "Start send request to $SERVER_HOST:$SERVER_PORT"
+
 i=0
 while true; do
   url="http://$SERVER_HOST:$SERVER_PORT/${SERVER_PATH}?debug=${SERVER_DEBUG}"

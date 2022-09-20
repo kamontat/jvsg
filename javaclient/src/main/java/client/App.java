@@ -14,6 +14,7 @@ public class App {
         String value = Environment.get("EXECUTION_INTERVAL_VALUE", "1");
         String unit = Environment.get("EXECUTION_INTERVAL_UNIT", "SECONDS");
 
+        System.out.println("Start send request");
         ScheduledFuture<?> handle = App.scheduler.scheduleAtFixedRate(executor, 0, Integer.parseInt(value),
                 TimeUnit.valueOf(unit));
 
