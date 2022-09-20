@@ -29,5 +29,5 @@ create_instance() {
 
 create_instance \
   "bashclient" \
-  "ghcr.io/kamontat/jvsg-bashclient:sha-2495bff" \
+  "ghcr.io/kamontat/jvsg-bashclient:sha-d5aacf2" \
   "10.148.0.2"
