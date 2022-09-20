@@ -7,13 +7,13 @@ import (
 	"net/url"
 )
 
-var HOSTNAME = GetEnv("SERVER_HOST", "localhost")
-var PORTNUMBER = GetEnv("SERVER_PORT", "3333")
+var SERVER_HOST = GetEnv("SERVER_HOST", "localhost")
+var SERVER_PORT = GetEnv("SERVER_PORT", "3333")
 
 func GetUrl(path string, debug string) url.URL {
 	return url.URL{
 		Scheme:   "http",
-		Host:     fmt.Sprintf("%s:%s", HOSTNAME, PORTNUMBER),
+		Host:     fmt.Sprintf("%s:%s", SERVER_HOST, SERVER_PORT),
 		Path:     path,
 		RawQuery: "debug=" + debug,
 	}

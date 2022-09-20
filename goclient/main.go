@@ -26,9 +26,9 @@ func main() {
 		Collector(requestDuration).
 		Collector(requestWithJsonDuration)
 
-	fmt.Println("Start send request")
+	fmt.Printf("Start send request to %s:%s\n", SERVER_HOST, SERVER_PORT)
 	s := gocron.NewScheduler(time.UTC)
-	s.Every(executionInterval).Do(func() {
+	_, err := s.Every(executionInterval).Do(func() {
 		NewRequestMetric()
 		if isParse == "true" {
 			_, err := RequestWithParse(path, debug)
@@ -41,15 +41,17 @@ func main() {
 				fmt.Println("Could not request to server:", err)
 			}
 		}
-	})
 
-	s.Every("30s").Do(func() {
-		fmt.Println("Pushing metrics to push gateway")
 		err := pusher.Push()
 		if err != nil {
 			fmt.Println("Could not push to Pushgateway:", err)
 		}
 	})
 
+	if err != nil {
+		fmt.Println("Could not create job:", err)
+	}
+
 	s.StartBlocking()
+	fmt.Println("End send request")
 }
