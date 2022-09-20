@@ -7,9 +7,10 @@ services:
     image: prom/prometheus:v2.37.1
     container_name: prometheus
     restart: unless-stopped
+    user: "${UID}"
     volumes:
       - ./prom/prometheus.yml:/etc/prometheus/prometheus.yml
-      - ./prom/data:/prometheus:rw
+      - ./prom/data:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
@@ -38,9 +39,10 @@ services:
     image: grafana/grafana-oss:9.1.5
     container_name: grafana
     restart: unless-stopped
+    user: "${UID}"
     volumes:
       - ./grafana/grafana.ini:/etc/grafana/grafana.ini
-      - ./grafana/data:/var/lib/grafana:rw
+      - ./grafana/data:/var/lib/grafana
     expose:
       - 3000
     ports:
