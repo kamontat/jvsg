@@ -29,5 +29,5 @@ create_instance() {
 
 create_instance \
   "javaclient" \
-  "ghcr.io/kamontat/jvsg-javaclient:sha-2e6d51a" \
+  "ghcr.io/kamontat/jvsg-javaclient:sha-2f71717" \
   "34.124.241.104"

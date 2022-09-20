@@ -29,5 +29,5 @@ create_instance() {
 
 create_instance \
   "goclient" \
-  "ghcr.io/kamontat/jvsg-goclient:sha-2e6d51a" \
+  "ghcr.io/kamontat/jvsg-goclient:sha-2f71717" \
   "34.124.241.104"
