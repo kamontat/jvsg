@@ -1,11 +1,11 @@
-name: "Publish server"
+name: "Publish goclient"
 
 on:
   workflow_dispatch:
 
 env:
-  APP_NAME: server
-  IMAGE_NAME: kamontat/jvsg-server
+  APP_NAME: goclient
+  IMAGE_NAME: kamontat/jvsg-goclient
   REGISTRY: ghcr.io
 
 defaults:

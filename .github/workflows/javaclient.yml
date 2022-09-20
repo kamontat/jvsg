@@ -1,11 +1,11 @@
-name: "Publish server"
+name: "Publish javaclient"
 
 on:
   workflow_dispatch:
 
 env:
-  APP_NAME: server
-  IMAGE_NAME: kamontat/jvsg-server
+  APP_NAME: javaclient
+  IMAGE_NAME: kamontat/jvsg-javaclient
   REGISTRY: ghcr.io
 
 defaults:

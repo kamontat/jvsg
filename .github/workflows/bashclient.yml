@@ -1,11 +1,11 @@
-name: "Publish server"
+name: "Publish bashclient"
 
 on:
   workflow_dispatch:
 
 env:
-  APP_NAME: server
-  IMAGE_NAME: kamontat/jvsg-server
+  APP_NAME: bashclient
+  IMAGE_NAME: kamontat/jvsg-bashclient
   REGISTRY: ghcr.io
 
 defaults:
