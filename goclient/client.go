@@ -9,9 +9,8 @@ import (
 	"time"
 )
 
-// Request without parse response
-func Request(path, debug string) (io.ReadCloser, error) {
-	start := time.Now()
+// RawRequest without parse response
+func RawRequest(path, debug string) (io.ReadCloser, error) {
 	url := GetUrl(path, debug)
 
 	req, err := GetRequest(url)
@@ -26,7 +25,6 @@ func Request(path, debug string) (io.ReadCloser, error) {
 		return nil, err
 	}
 
-	RequestDurationMetric(start)
 	if res.StatusCode != http.StatusOK {
 		fmt.Printf("error response: %s\n", res.Status)
 		return nil, errors.New("response status is not ok (" + res.Status + ")")
@@ -35,11 +33,27 @@ func Request(path, debug string) (io.ReadCloser, error) {
 	return res.Body, nil
 }
 
+func RequestWithoutParse(path, debug string) (string, error) {
+	start := time.Now()
+	body, err := RawRequest(path, debug)
+	if err != nil {
+		return "", err
+	}
+
+	result, err := io.ReadAll(body)
+	if err != nil {
+		return "", err
+	}
+
+	RequestWithJsonDurationMetric(start)
+	return string(result), nil
+}
+
 // Request with parse response to map
 func RequestWithParse(path, debug string) ([]map[string]interface{}, error) {
 	start := time.Now()
 	result := []map[string]interface{}{}
-	body, err := Request(path, debug)
+	body, err := RawRequest(path, debug)
 	if err != nil {
 		return result, err
 	}

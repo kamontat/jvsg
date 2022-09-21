@@ -30,7 +30,7 @@ func main() {
 				fmt.Println("Could not request to server:", err)
 			}
 		} else {
-			_, err := Request(path, debug)
+			_, err := RequestWithoutParse(path, debug)
 			if err != nil {
 				fmt.Println("Could not request to server:", err)
 			}
