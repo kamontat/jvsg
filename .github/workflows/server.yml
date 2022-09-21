@@ -2,6 +2,11 @@ name: "Publish server"
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - server/**
 
 env:
   APP_NAME: server

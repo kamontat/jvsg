@@ -2,6 +2,11 @@ name: "Publish bashclient"
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - bashclient/**
 
 env:
   APP_NAME: bashclient

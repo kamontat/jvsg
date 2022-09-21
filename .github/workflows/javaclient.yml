@@ -2,6 +2,11 @@ name: "Publish javaclient"
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - javaclient/**
 
 env:
   APP_NAME: javaclient
