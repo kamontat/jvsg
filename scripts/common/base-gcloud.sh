@@ -1,35 +1,12 @@
 #!/usr/bin/env bash
 
-_gcp_toapp() {
-  local name="$1"
-
-  if [[ "$name" == "bashclient" ]] ||
-    [[ "$name" == "bash" ]] ||
-    [[ "$name" == "b" ]]; then
-    printf "%s" "bashclient"
-  elif [[ "$name" == "goclient" ]] ||
-    [[ "$name" == "go" ]] ||
-    [[ "$name" == "g" ]]; then
-    printf "%s" "goclient"
-  elif [[ "$name" == "javaclient" ]] ||
-    [[ "$name" == "java" ]] ||
-    [[ "$name" == "j" ]]; then
-    printf "%s" "javaclient"
-  elif [[ "$name" == "server" ]] ||
-    [[ "$name" == "s" ]]; then
-    printf "%s" "server"
-  else
-    printf "%s" "$name"
-  fi
-}
-
 gcp_run() {
   exec_cmd "gcloud" "$@"
 }
 
 gcp_connect() {
   local name
-  name="$(_gcp_toapp "$1")"
+  name="$(toapp "$1")"
 
   gcp_run compute ssh "$name"
 }
@@ -49,7 +26,7 @@ gcp_create_firewall() {
 
 gcp_create_instance() {
   local name
-  name="$(_gcp_toapp "$1")"
+  name="$(toapp "$1")"
 
   local cmd zone network_interface maintenance_policy provisioning_model service_account scopes
   cmd="$(getenv "$name" "CREATE_CMD")"
@@ -91,7 +68,7 @@ gcp_create_instance() {
 
 gcp_update_instance() {
   local name
-  name="$(_gcp_toapp "$1")"
+  name="$(toapp "$1")"
 
   if [[ "$name" == "server" ]]; then
     echo "Server cannot update via scripts" >&2

@@ -7,8 +7,8 @@ export DEFAULT_ZONE="asia-southeast1-a"
 
 export SERVER_INTERNAL_IP="10.148.0.8"
 export BASHCLIENT_CONTAINER_IMAGE="ghcr.io/kamontat/jvsg-bashclient:sha-28cb04c"
-export GOCLIENT_CONTAINER_IMAGE="ghcr.io/kamontat/jvsg-goclient:sha-28cb04c"
-export JAVACLIENT_CONTAINER_IMAGE="ghcr.io/kamontat/jvsg-javaclient:sha-28cb04c"
+export GOCLIENT_CONTAINER_IMAGE="ghcr.io/kamontat/jvsg-goclient:sha-6fa6eee"
+export JAVACLIENT_CONTAINER_IMAGE="ghcr.io/kamontat/jvsg-javaclient:sha-6fa6eee"
 
 export BASHCLIENT_CONTAINER_RESTART_POLICY="on-failure"
 export BASHCLIENT_CONTAINER_ENV="SERVER_HOST=$SERVER_INTERNAL_IP,PUSH_GATEWAY_URL=http://$SERVER_INTERNAL_IP:9091"
@@ -42,6 +42,8 @@ export SERVER_MACHINE_TYPE="e2-custom-4-4096"
 export SERVER_TAGS="grafana,prometheus,server,pushgateway"
 export SERVER_CREATE_DISK="auto-delete=yes,boot=yes,device-name=server,image=projects/debian-cloud/global/images/debian-11-bullseye-v20220822,mode=rw,size=10,type=projects/$GCP_PROJECT_NAME/zones/us-west4-b/diskTypes/pd-balanced"
 export SERVER_CREATE_EPARAMETERS="--reservation-affinity=any"
+
+export DEFAULT_SERVER_HOST="$SERVER_INTERNAL_IP"
 
 export DEFAULT_CREATE_CMD="create-with-container"
 

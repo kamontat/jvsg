@@ -44,6 +44,29 @@ toopt() {
   fi
 }
 
+toapp() {
+  local name="$1"
+
+  if [[ "$name" == "bashclient" ]] ||
+    [[ "$name" == "bash" ]] ||
+    [[ "$name" == "b" ]]; then
+    printf "%s" "bashclient"
+  elif [[ "$name" == "goclient" ]] ||
+    [[ "$name" == "go" ]] ||
+    [[ "$name" == "g" ]]; then
+    printf "%s" "goclient"
+  elif [[ "$name" == "javaclient" ]] ||
+    [[ "$name" == "java" ]] ||
+    [[ "$name" == "j" ]]; then
+    printf "%s" "javaclient"
+  elif [[ "$name" == "server" ]] ||
+    [[ "$name" == "s" ]]; then
+    printf "%s" "server"
+  else
+    printf "%s" "$name"
+  fi
+}
+
 exec_cmd() {
   local simplified=()
 
