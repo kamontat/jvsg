@@ -41,7 +41,7 @@ public class Metric {
         .help("How long raw request take")
         .buckets(100, 300, 500, 700, 900, 1200, 1500)
         .register(registry);
-    this.requestDuration = Gauge.build()
+    this.requestWithJsonDuration = Gauge.build()
         .name(name + "_json_request_ms")
         .help("How long raw request take")
         .register(registry);
@@ -62,7 +62,7 @@ public class Metric {
     this.requestDurationBucket.observe(duration);
   }
 
-  public void jsonParserDuration(Instant start) {
+  public void requestWithJsonDuration(Instant start) {
     double duration = Duration.between(start, Instant.now()).toMillis();
     this.requestWithJsonDuration.set(duration);
     this.requestWithJsonDurationBucket.observe(duration);

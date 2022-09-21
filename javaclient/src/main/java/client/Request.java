@@ -47,7 +47,7 @@ public class Request {
     if (parse == "true") {
       var start = Instant.now();
       var response = client.send(request, new JsonBodyHandler());
-      this.metrics.requestDuration(start);
+      this.metrics.requestWithJsonDuration(start);
       if (response.statusCode() != 200) {
         throw new Exception("Unexpected status code: " + response.statusCode());
       }

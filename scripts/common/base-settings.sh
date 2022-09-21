@@ -3,7 +3,7 @@
 # export DRYRUN="" # Set to true to run in dryrun mode
 
 export GCP_PROJECT_NAME="perfect-crawler-363108"
-export DEFAULT_ZONE="asia-southeast1-a"
+export DEFAULT_ZONE="asia-southeast1-b"
 
 export SERVER_INTERNAL_IP="10.148.0.8"
 export BASHCLIENT_CONTAINER_IMAGE="ghcr.io/kamontat/jvsg-bashclient:sha-28cb04c"
