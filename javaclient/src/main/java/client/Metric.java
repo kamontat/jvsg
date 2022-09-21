@@ -38,16 +38,16 @@ public class Metric {
         .register(registry);
     this.requestDurationBucket = Histogram.build()
         .name(name + "_raw_request_bucket_ms")
-        .help("How long raw request take")
+        .help("Bucket of raw request duration")
         .buckets(100, 300, 500, 700, 900, 1200, 1500)
         .register(registry);
     this.requestWithJsonDuration = Gauge.build()
         .name(name + "_json_request_ms")
-        .help("How long raw request take")
+        .help("How long json request take")
         .register(registry);
     this.requestWithJsonDurationBucket = Histogram.build()
         .name(name + "_json_request_bucket_ms")
-        .help("How long json request take")
+        .help("Bucket of json request duration")
         .buckets(100, 300, 500, 700, 900, 1200, 1500)
         .register(registry);
   }
