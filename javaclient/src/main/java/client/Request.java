@@ -29,7 +29,7 @@ public class Request {
     this.jobName = Environment.get("JOB_NAME", "javaclient");
 
     String pushGatewayUrl = Environment.get("PUSH_GATEWAY_URL", "localhost:9091");
-    this.metrics = new Metric(pushGatewayUrl);
+    this.metrics = new Metric(this.jobName, pushGatewayUrl);
   }
 
   public String getServer() {

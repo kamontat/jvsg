@@ -20,29 +20,29 @@ public class Metric {
   private Gauge requestWithJsonDuration;
   private Histogram requestWithJsonDurationBucket;
 
-  public Metric(String url) {
+  public Metric(String name, String url) {
     this.registry = new CollectorRegistry();
     this.pushGateway = new PushGateway(url);
 
     this.requestCount = Counter.build()
-        .name("request_count")
+        .name(name + "_request_count")
         .help("How many job execute")
         .register(registry);
     this.requestDuration = Gauge.build()
-        .name("raw_request_ms")
+        .name(name + "_raw_request_ms")
         .help("How long raw request take")
         .register(registry);
     this.requestDurationBucket = Histogram.build()
-        .name("raw_request_bucket_ms")
+        .name(name + "_raw_request_bucket_ms")
         .help("How long raw request take")
         .buckets(100, 300, 500, 700, 900, 1200, 1500)
         .register(registry);
     this.requestDuration = Gauge.build()
-        .name("json_request_ms")
+        .name(name + "_json_request_ms")
         .help("How long raw request take")
         .register(registry);
     this.requestWithJsonDurationBucket = Histogram.build()
-        .name("json_request_bucket_ms")
+        .name(name + "_json_request_bucket_ms")
         .help("How long json request take")
         .buckets(100, 300, 500, 700, 900, 1200, 1500)
         .register(registry);
