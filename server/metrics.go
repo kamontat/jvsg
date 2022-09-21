@@ -20,7 +20,7 @@ var (
 	requestDurationBucket = promauto.NewHistogramVec(prometheus.HistogramOpts{
 		Name:    "server_request_bucket_ms",
 		Help:    "How long it takes to process request",
-		Buckets: []float64{1, 3, 5, 10, 20, 50, 100, 200, 500, 1000},
+		Buckets: []float64{10, 20, 50, 100, 200, 500, 1000},
 	}, []string{"path", "status", "debug"})
 )
 
