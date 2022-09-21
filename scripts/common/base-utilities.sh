@@ -67,6 +67,11 @@ toapp() {
   fi
 }
 
+go_to_app() {
+  local name="$1"
+  cd "$ROOT/../$name" || exit 1
+}
+
 exec_cmd() {
   local simplified=()
 
