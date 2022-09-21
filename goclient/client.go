@@ -12,7 +12,6 @@ import (
 // RawRequest without parse response
 func RawRequest(path, debug string) (io.ReadCloser, error) {
 	url := GetUrl(path, debug)
-
 	req, err := GetRequest(url)
 	if err != nil {
 		fmt.Printf("error creating http request: %s\n", err)
@@ -45,7 +44,7 @@ func RequestWithoutParse(path, debug string) (string, error) {
 		return "", err
 	}
 
-	RequestWithJsonDurationMetric(start)
+	RequestDurationMetric(start)
 	return string(result), nil
 }
 
@@ -58,7 +57,7 @@ func RequestWithParse(path, debug string) ([]map[string]interface{}, error) {
 		return result, err
 	}
 	json.NewDecoder(body).Decode(&result)
-	RequestWithJsonDurationMetric(start)
 
+	RequestWithJsonDurationMetric(start)
 	return result, nil
 }
