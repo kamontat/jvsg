@@ -1,13 +1,16 @@
 package main
 
 import (
-	"encoding/json"
 	"errors"
 	"fmt"
 	"io"
 	"net/http"
 	"time"
+
+	jsoniter "github.com/json-iterator/go"
 )
+
+var json = jsoniter.ConfigCompatibleWithStandardLibrary
 
 // RawRequest without parse response
 func RawRequest(path, debug string) (io.ReadCloser, error) {
@@ -56,6 +59,7 @@ func RequestWithParse(path, debug string) ([]map[string]interface{}, error) {
 	if err != nil {
 		return result, err
 	}
+
 	json.NewDecoder(body).Decode(&result)
 
 	RequestWithJsonDurationMetric(start)
