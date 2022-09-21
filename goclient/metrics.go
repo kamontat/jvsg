@@ -21,7 +21,7 @@ var (
 		Buckets: []float64{50, 70, 90, 120, 150, 200, 300, 500},
 	})
 	requestWithJsonDuration = prometheus.NewGauge(prometheus.GaugeOpts{
-		Name: jobName + "_raw_request_ms",
+		Name: jobName + "_json_request_ms",
 		Help: "How long raw request take",
 	})
 	requestWithJsonDurationBucket = prometheus.NewHistogram(prometheus.HistogramOpts{
