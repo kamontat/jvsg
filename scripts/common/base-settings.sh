@@ -8,7 +8,7 @@ export DEFAULT_ZONE="asia-southeast1-b"
 export SERVER_INTERNAL_IP="10.148.0.8"
 export BASHCLIENT_CONTAINER_IMAGE="ghcr.io/kamontat/jvsg-bashclient:sha-dfe8f26"
 export GOCLIENT_CONTAINER_IMAGE="ghcr.io/kamontat/jvsg-goclient:sha-eef774f"
-export JAVACLIENT_CONTAINER_IMAGE="ghcr.io/kamontat/jvsg-javaclient:sha-ab88f39"
+export JAVACLIENT_CONTAINER_IMAGE="ghcr.io/kamontat/jvsg-javaclient:sha-44e4405"
 
 export BASHCLIENT_CONTAINER_RESTART_POLICY="on-failure"
 export BASHCLIENT_CONTAINER_ENV="SERVER_HOST=$SERVER_INTERNAL_IP,PUSH_GATEWAY_URL=http://$SERVER_INTERNAL_IP:9091"
@@ -20,7 +20,7 @@ export BASHCLIENT_CREATE_EPARAMETERS="--container-privileged"
 export BASHCLIENT_LABELS="container-vm=cos-stable-101-17162-40-1"
 
 export GOCLIENT_CONTAINER_RESTART_POLICY="on-failure"
-export GOCLIENT_CONTAINER_ENV="SERVER_HOST=$SERVER_INTERNAL_IP,PUSH_GATEWAY_URL=http://$SERVER_INTERNAL_IP:9091"
+export GOCLIENT_CONTAINER_ENV="SERVER_HOST=$SERVER_INTERNAL_IP,PUSH_GATEWAY_URL=http://$SERVER_INTERNAL_IP:9091" # ,JOB_NAME=gojsonclient,PARSE=true
 export GOCLIENT_IMAGE="projects/cos-cloud/global/images/cos-stable-101-17162-40-1"
 export GOCLIENT_BOOT_DISK_SIZE="10GB"
 export GOCLIENT_BOOT_DISK_TYPE="pd-balanced"
@@ -29,7 +29,7 @@ export GOCLIENT_CREATE_EPARAMETERS="--container-privileged"
 export GOCLIENT_LABELS="container-vm=cos-stable-101-17162-40-1"
 
 export JAVACLIENT_CONTAINER_RESTART_POLICY="on-failure"
-export JAVACLIENT_CONTAINER_ENV="SERVER_HOST=$SERVER_INTERNAL_IP,PUSH_GATEWAY_URL=http://$SERVER_INTERNAL_IP:9091"
+export JAVACLIENT_CONTAINER_ENV="SERVER_HOST=$SERVER_INTERNAL_IP,PUSH_GATEWAY_URL=http://$SERVER_INTERNAL_IP:9091" # ,JOB_NAME=javajsonclient,PARSE=true
 export JAVACLIENT_IMAGE="projects/cos-cloud/global/images/cos-stable-101-17162-40-1"
 export JAVACLIENT_BOOT_DISK_SIZE="10GB"
 export JAVACLIENT_BOOT_DISK_TYPE="pd-balanced"
