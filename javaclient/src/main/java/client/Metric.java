@@ -6,6 +6,7 @@ import java.time.Instant;
 
 import io.prometheus.client.CollectorRegistry;
 import io.prometheus.client.Counter;
+import io.prometheus.client.Gauge;
 import io.prometheus.client.Histogram;
 import io.prometheus.client.exporter.PushGateway;
 
@@ -14,8 +15,10 @@ public class Metric {
   private PushGateway pushGateway;
 
   private Counter requestCount;
-  private Histogram requestDuration;
-  private Histogram requestWithJsonDuration;
+  private Gauge requestDuration;
+  private Histogram requestDurationBucket;
+  private Gauge requestWithJsonDuration;
+  private Histogram requestWithJsonDurationBucket;
 
   public Metric(String url) {
     this.registry = new CollectorRegistry();
@@ -25,15 +28,23 @@ public class Metric {
         .name("request_count")
         .help("How many job execute")
         .register(registry);
-    this.requestDuration = Histogram.build()
+    this.requestDuration = Gauge.build()
         .name("raw_request_ms")
         .help("How long raw request take")
-        .buckets(50, 70, 90, 120, 150, 200, 300, 500)
         .register(registry);
-    this.requestWithJsonDuration = Histogram.build()
+    this.requestDurationBucket = Histogram.build()
+        .name("raw_request_bucket_ms")
+        .help("How long raw request take")
+        .buckets(100, 300, 500, 700, 900, 1200, 1500)
+        .register(registry);
+    this.requestDuration = Gauge.build()
         .name("json_request_ms")
+        .help("How long raw request take")
+        .register(registry);
+    this.requestWithJsonDurationBucket = Histogram.build()
+        .name("json_request_bucket_ms")
         .help("How long json request take")
-        .buckets(50, 70, 90, 120, 150, 200, 300, 500)
+        .buckets(100, 300, 500, 700, 900, 1200, 1500)
         .register(registry);
   }
 
@@ -42,13 +53,15 @@ public class Metric {
   }
 
   public void requestDuration(Instant start) {
-    Duration duration = Duration.between(start, Instant.now());
-    this.requestDuration.observe(duration.toMillis());
+    double duration = Duration.between(start, Instant.now()).toMillis();
+    this.requestDuration.set(duration);
+    this.requestDurationBucket.observe(duration);
   }
 
   public void jsonParserDuration(Instant start) {
-    Duration duration = Duration.between(start, Instant.now());
-    this.requestWithJsonDuration.observe(duration.toMillis());
+    double duration = Duration.between(start, Instant.now()).toMillis();
+    this.requestWithJsonDuration.set(duration);
+    this.requestWithJsonDurationBucket.observe(duration);
   }
 
   public void report(String jobName) throws IOException {

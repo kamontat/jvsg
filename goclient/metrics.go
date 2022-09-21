@@ -11,13 +11,21 @@ var (
 		Name: "request_count",
 		Help: "How many job execute",
 	})
-	requestDuration = prometheus.NewHistogram(prometheus.HistogramOpts{
-		Name:    "raw_request_ms",
+	requestDuration = prometheus.NewGauge(prometheus.GaugeOpts{
+		Name: "raw_request_ms",
+		Help: "How long raw request take",
+	})
+	requestDurationBucket = prometheus.NewHistogram(prometheus.HistogramOpts{
+		Name:    "raw_request_bucket_ms",
 		Help:    "How long raw request take",
 		Buckets: []float64{50, 70, 90, 120, 150, 200, 300, 500},
 	})
-	requestWithJsonDuration = prometheus.NewHistogram(prometheus.HistogramOpts{
-		Name:    "json_request_ms",
+	requestWithJsonDuration = prometheus.NewGauge(prometheus.GaugeOpts{
+		Name: "raw_request_ms",
+		Help: "How long raw request take",
+	})
+	requestWithJsonDurationBucket = prometheus.NewHistogram(prometheus.HistogramOpts{
+		Name:    "json_request_bucket_ms",
 		Help:    "How long json request take",
 		Buckets: []float64{50, 70, 90, 120, 150, 200, 300, 500},
 	})
@@ -29,10 +37,14 @@ func NewRequestMetric() {
 
 func RequestDurationMetric(start time.Time) {
 	duration := float64(time.Since(start).Milliseconds())
-	requestDuration.Observe(duration)
+
+	requestDuration.Set(duration)
+	requestDurationBucket.Observe(duration)
 }
 
 func RequestWithJsonDurationMetric(start time.Time) {
 	duration := float64(time.Since(start).Milliseconds())
-	requestWithJsonDuration.Observe(duration)
+
+	requestWithJsonDuration.Set(duration)
+	requestWithJsonDurationBucket.Observe(duration)
 }
