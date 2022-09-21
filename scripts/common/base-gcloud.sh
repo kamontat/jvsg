@@ -19,7 +19,7 @@ _gcp_toapp() {
     [[ "$name" == "s" ]]; then
     printf "%s" "server"
   else
-    printf ""
+    printf "%s" "$name"
   fi
 }
 
