@@ -10,11 +10,10 @@ JOB_NAME="${JOB_NAME:-bashclient}"
 
 echo "Start send request to $SERVER_HOST:$SERVER_PORT"
 
+url="http://$SERVER_HOST:$SERVER_PORT${SERVER_PATH}?debug=${SERVER_DEBUG}"
 i=0
 while true; do
-  url="http://$SERVER_HOST:$SERVER_PORT/${SERVER_PATH}?debug=${SERVER_DEBUG}"
-
-  curl -s -X "POST" -w "@formatter.txt" -o /dev/null "$url" |
+  curl -sL -X "POST" -w "@formatter.txt" -o /dev/null "$url" |
     curl -s --data-binary @- "$PUSH_GATEWAY_URL/metrics/job/$JOB_NAME"
 
   echo "request_total $i" |
