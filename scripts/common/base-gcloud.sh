@@ -74,7 +74,7 @@ gcp_update_instance() {
     echo "Server cannot update via scripts" >&2
     return 1
   else
-    container_image="$(toopt "$name" "container-image")"
+    image="$(toopt "$name" "container-image")"
     "gcp_run" compute instances \
       update-container \
       "$name" "$image"
