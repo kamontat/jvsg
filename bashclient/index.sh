@@ -13,7 +13,7 @@ echo "Start send request to $SERVER_HOST:$SERVER_PORT"
 url="http://$SERVER_HOST:$SERVER_PORT${SERVER_PATH}?debug=${SERVER_DEBUG}"
 i=0
 while true; do
-  curl -sL -X "POST" -w "@formatter.txt" -o /dev/null "$url" |
+  curl -sLX "POST" -w "@formatter.txt" -o /dev/null "$url" |
     curl -s --data-binary @- "$PUSH_GATEWAY_URL/metrics/job/$JOB_NAME"
 
   echo "request_total $i" |
