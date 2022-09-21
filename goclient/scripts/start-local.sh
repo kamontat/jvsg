@@ -2,6 +2,7 @@
 
 go run \
   ./main.go \
+  ./env.go \
   ./client.go \
   ./metrics.go \
   ./utils_client.go \
