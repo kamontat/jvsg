@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-export DRYRUN="true"
+# export DRYRUN="" # Set to true to run in dryrun mode
 
 export GCP_PROJECT_NAME="perfect-crawler-363108"
 export DEFAULT_ZONE="asia-southeast1-a"
