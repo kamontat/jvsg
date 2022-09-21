@@ -28,7 +28,7 @@ public class Request {
     this.parse = Environment.get("PARSE", "false");
     this.jobName = Environment.get("JOB_NAME", "javaclient");
 
-    String pushGatewayUrl = Environment.get("PUSH_GATEWAY_URL", "localhost:9091");
+    String pushGatewayUrl = Environment.get("PUSH_GATEWAY_URL", "http://localhost:9091");
     this.metrics = new Metric(this.jobName, pushGatewayUrl);
   }
 

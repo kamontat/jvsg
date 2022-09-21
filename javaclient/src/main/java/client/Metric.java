@@ -1,6 +1,7 @@
 package client;
 
 import java.io.IOException;
+import java.net.URI;
 import java.time.Duration;
 import java.time.Instant;
 
@@ -20,8 +21,11 @@ public class Metric {
   private Gauge requestWithJsonDuration;
   private Histogram requestWithJsonDurationBucket;
 
-  public Metric(String name, String url) {
+  public Metric(String name, String link) {
+    URI uri = URI.create(link);
     this.registry = new CollectorRegistry();
+
+    String url = String.format("%s:%d", uri.getHost(), uri.getPort());
     this.pushGateway = new PushGateway(url);
 
     this.requestCount = Counter.build()
