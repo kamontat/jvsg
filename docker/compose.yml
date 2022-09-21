@@ -71,7 +71,7 @@ services:
       start_period: 30s
 
   server:
-    image: ghcr.io/kamontat/jvsg-server:sha-f504aa4
+    image: ghcr.io/kamontat/jvsg-server:sha-28cb04c
     container_name: server
     restart: unless-stopped
     expose:

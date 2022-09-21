@@ -6,9 +6,9 @@ export GCP_PROJECT_NAME="perfect-crawler-363108"
 export DEFAULT_ZONE="asia-southeast1-a"
 
 export SERVER_INTERNAL_IP="10.148.0.8"
-export BASHCLIENT_CONTAINER_IMAGE="ghcr.io/kamontat/jvsg-bashclient:sha-571add1"
-export GOCLIENT_CONTAINER_IMAGE="ghcr.io/kamontat/jvsg-goclient:sha-571add1"
-export JAVACLIENT_CONTAINER_IMAGE="ghcr.io/kamontat/jvsg-javaclient:sha-571add1"
+export BASHCLIENT_CONTAINER_IMAGE="ghcr.io/kamontat/jvsg-bashclient:sha-28cb04c"
+export GOCLIENT_CONTAINER_IMAGE="ghcr.io/kamontat/jvsg-goclient:sha-28cb04c"
+export JAVACLIENT_CONTAINER_IMAGE="ghcr.io/kamontat/jvsg-javaclient:sha-28cb04c"
 
 export BASHCLIENT_CONTAINER_RESTART_POLICY="on-failure"
 export BASHCLIENT_CONTAINER_ENV="SERVER_HOST=$SERVER_INTERNAL_IP,PUSH_GATEWAY_URL=http://$SERVER_INTERNAL_IP:9091"
